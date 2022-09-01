@@ -1,0 +1,7 @@
+a{
+  font-weight: lighter;
+}
+
+a.active{
+  font-weight: normal;
+}

@@ -1,1 +1,11 @@
-<p>list works!</p>
+<div class="container-fluid p-0">
+  <div class="d-flex justify-content-center mt-5" *ngIf="meets.length==0; else elseBlock">
+    no data
+  </div>
+    <ng-template #ifBlock>
+      no data
+    </ng-template>
+    <ng-template #elseBlock>
+      data
+    </ng-template>
+</div>

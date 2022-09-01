@@ -18,7 +18,7 @@
 <div class="container-fluid p-0">
   <div class="d-flex justify-content-center mt-5">
     <div class="card p-3 pt-5 pb-5 shadow bg-body rounded-2 d-flex align-items-center" style="width: 90vw;">
-      <form action="" method="post" class="px-3">
+      <form class="px-3">
           <table class="mb-3" style="width: 80vw">
             <tr>
               <td style="width: 15%;">
@@ -26,9 +26,9 @@
               </td>
               <td class="col2" style="width: 85%;">
                 <div class="container-fluid p-0 d-flex justify-content-center">
-                  <input type="time" name="startTime" id="" class="div form-control border-dark">
+                  <input type="time" required ngModel name="startTime" class="div form-control border-dark">
                   <div class="mx-3">s/d</div>
-                  <input type="time" name="endTime" id="" class="div form-control border-dark">
+                  <input type="time" required ngModel name="endTime" class="div form-control border-dark">
                 </div>
               </td>
             </tr>
@@ -37,7 +37,7 @@
                 <b>Tanggal</b>
               </td>
               <td class="col2">
-                <input type="date" name="date" id="" class="form-control border-dark">
+                <input type="date" required ngModel name="date" class="form-control border-dark">
               </td>
             </tr>
             <tr>
@@ -45,7 +45,7 @@
                 <b>Judul</b>
               </td>
               <td class="col2">
-                <input type="text" name="title" id="" class="form-control border-dark">
+                <input type="text" required ngModel name="title" class="form-control border-dark">
               </td>
             </tr>
             <tr>
@@ -53,7 +53,7 @@
                 <b>Deskripsi</b>
               </td>
               <td class="col2" style="height: 5rem;">
-                <textarea name="desc" id="" style="resize: none;" class="form-control border-dark"></textarea>
+                <textarea required ngModel name="desc" style="resize: none;" class="form-control border-dark"></textarea>
               </td>
             </tr>
             <tr>
@@ -69,3 +69,10 @@
     </div>
   </div>
 </div>
+
+<!-- <div *ngFor="let m of meets">
+  <ul>
+    <li>{{}}</li>
+  </ul>
+  <br>
+</div> -->
