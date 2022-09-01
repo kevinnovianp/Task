@@ -11,6 +11,7 @@ import { MEETS } from '../meeting-dump'
 export class ListComponent implements OnInit {
 
   meets = MEETS;
+  ctr = MEETS.length==0 ? false:true
 
   constructor() { }
 
