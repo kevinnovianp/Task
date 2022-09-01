@@ -1,11 +1,33 @@
 <div class="container-fluid p-0">
-  <div class="d-flex justify-content-center mt-5" *ngIf="ctr">
-    data
+  <div class="m-4" *ngIf="ctr">
+    <div class="d-flex justify-content-center" *ngFor="let m of meets">
+      <div class="list-group-item card p-4 pt-3 pb-3 mb-4 shadow bg-body rounded-2" style="width: 90vw;">
+        <table style="width: 100%;">
+          <tr>
+            <td style="width: 20%;"><b>Jam</b></td>
+            <td style="width: 80%;">{{m.startTime}} s/d {{m.endTime}}</td>
+          </tr>
+          <tr>
+            <td><b>Tanggal</b></td>
+            <td>{{m.date}}</td>
+          </tr>
+          <tr>
+            <td><b>Judul</b></td>
+            <td>{{m.title}}</td>
+          </tr>
+          <tr>
+            <td><b>Deskripsi</b></td>
+            <td style="line-height: 1rem;">{{m.desc}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
-  <div class="d-flex justify-content-center mt-5" *ngIf="!ctr">
-    no data
+  <div class="m-4" *ngIf="!ctr">
+    <div class="d-flex justify-content-center">
+      <div class="card p-4 pt-3 pb-3 shadow bg-body rounded-2 mb-4 text-center" style="width: 90vw;">
+        <b>No Meeting Found</b>
+      </div>
+    </div>
   </div>
-  <!-- <ng-template #elseBlock>
-    no data
-  </ng-template> -->
 </div>
