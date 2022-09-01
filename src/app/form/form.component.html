@@ -16,22 +16,25 @@
 </style>
 
 <div class="container-fluid p-0">
-  <h3 class="m-0 p-3 bg-primary text-white">Tambah Meeting</h3>
   <div class="d-flex justify-content-center mt-5">
-    <div class="card p-3 pt-5 pb-5 shadow bg-body rounded-2 d-flex align-items-center" style="width: 60vw;">
+    <div class="card p-3 pt-5 pb-5 shadow bg-body rounded-2 d-flex align-items-center" style="width: 90vw;">
       <form action="" method="post" class="px-3">
-          <table class="mb-3" style="width: 50vw">
+          <table class="mb-3" style="width: 80vw">
             <tr>
-              <td style="width: 20%;">
-                Jam
+              <td style="width: 15%;">
+                <b>Jam</b>
               </td>
-              <td class="col2" style="width: 80%;">
-                <input type="time" name="startTime" id="" class="form-control border-dark me-2"> s/d <input type="time" name="endTime" id="" class="form-control border-dark ms-2">
+              <td class="col2" style="width: 85%;">
+                <div class="container-fluid p-0 d-flex justify-content-center">
+                  <input type="time" name="startTime" id="" class="div form-control border-dark">
+                  <div class="mx-3">s/d</div>
+                  <input type="time" name="endTime" id="" class="div form-control border-dark">
+                </div>
               </td>
             </tr>
             <tr>
               <td>
-                Tanggal
+                <b>Tanggal</b>
               </td>
               <td class="col2">
                 <input type="date" name="date" id="" class="form-control border-dark">
@@ -39,7 +42,7 @@
             </tr>
             <tr>
               <td>
-                Judul
+                <b>Judul</b>
               </td>
               <td class="col2">
                 <input type="text" name="title" id="" class="form-control border-dark">
@@ -47,7 +50,7 @@
             </tr>
             <tr>
               <td>
-                Deskripsi
+                <b>Deskripsi</b>
               </td>
               <td class="col2" style="height: 5rem;">
                 <textarea name="desc" id="" style="resize: none;" class="form-control border-dark"></textarea>
@@ -60,7 +63,7 @@
             </tr>
           </table>
           <div class="mt-4 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary" style="width: 8rem;">Simpan</button>
+            <button type="submit" class="btn btn-primary" style="width: 8rem; background-color: var(--bca);">Simpan</button>
           </div>
       </form>
     </div>
