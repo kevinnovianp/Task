@@ -24,7 +24,7 @@
                 <b>Judul</b>
               </td>
               <td class="col2">
-                <input type="text" name="title" class="form-control border-dark" [(ngModel)]="newMeet.title">
+                <input type="text" name="title" class="form-control border-dark" [(ngModel)]="title">
               </td>
             </tr>
             <tr>
@@ -32,7 +32,7 @@
                 <b>Tanggal</b>
               </td>
               <td class="col2">
-                <input type="date" name="date" class="form-control border-dark" [(ngModel)]="newMeet.date">
+                <input type="date" name="date" class="form-control border-dark" [(ngModel)]="date">
               </td>
             </tr>
             <tr>
@@ -41,9 +41,9 @@
               </td>
               <td class="col2" style="width: 85%;">
                 <div class="container-fluid p-0 d-flex justify-content-center">
-                  <input type="time" name="startTime" class="div form-control border-dark" [(ngModel)]="newMeet.startTime">
+                  <input type="time" name="startTime" class="div form-control border-dark" [(ngModel)]="startTime">
                   <div class="mx-3">s/d</div>
-                  <input type="time" name="endTime" class="div form-control border-dark" [(ngModel)]="newMeet.endTime">
+                  <input type="time" name="endTime" class="div form-control border-dark" [(ngModel)]="endTime">
                 </div>
               </td>
             </tr>
@@ -52,7 +52,7 @@
                 <b>Deskripsi</b>
               </td>
               <td class="col2" style="height: 5rem;">
-                <textarea name="desc" style="resize: none;" class="form-control border-dark" [(ngModel)]="newMeet.desc"></textarea>
+                <textarea name="desc" style="resize: none;" class="form-control border-dark" [(ngModel)]="desc"></textarea>
               </td>
             </tr>
             <tr>

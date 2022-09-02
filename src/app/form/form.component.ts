@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MeetingService } from '../meeting.service';
 import { NgModule } from '@angular/core';
 import { FormsModule, FormControl, FormGroup } from '@angular/forms';
 import { Meeting } from '../meeting';
@@ -14,18 +15,26 @@ import { Router } from '@angular/router';
 
 export class FormComponent implements OnInit {
 
-  // public id!: number
-  // public startTime!: string
-  // public endTime!: string
-  // public date!: string
-  // public title!: string
-  // public desc!: string
+  public id!: number
+  public startTime!: string
+  public endTime!: string
+  public date!: string
+  public title!: string
+  public desc!: string
+  public newMeetings!: Meeting[]
 
-  constructor() { }
+  constructor(private meetService: MeetingService) { }
+
+  ngOnInit(): void {
+    this.meetService.getMeetings().subscribe(
+      (meetings: any) => {
+        this.newMeetings = meetings
+      }
+    );
+  }
 
   currId=1
-  newMeet=new Meeting()
-  month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
   public changeDateFormat(date:any){
     var od = new Date(date)
@@ -43,13 +52,18 @@ export class FormComponent implements OnInit {
   }
 
   submitForm(){
-    this.newMeet.id = this.currId++
-
-    alert(this.newMeet.id + "; " + this.newMeet.title + "; " + this.changeDateFormat(this.newMeet.date) + "; "+ this.changeTimeFormat(this.newMeet.startTime) + " s/d " + this.changeTimeFormat(this.newMeet.endTime) + "; " + this.newMeet.desc)
+    this.id = this.currId++
+    const newMeeting: Meeting = {
+      id: this.id,
+      startTime: this.changeDateFormat(this.startTime),
+      endTime: this.changeDateFormat(this.endTime),
+      date: this.changeDateFormat(this.date),
+      title: this.title,
+      desc: this.desc,
+    }
+    this.newMeetings.push(newMeeting)
+    alert(this.id + "; " + this.title + "; " + this.changeDateFormat(this.date) + "; "+ this.changeTimeFormat(this.startTime) + " s/d " + this.changeTimeFormat(this.endTime) + "; " + this.desc)
     location.pathname = ('/view_meetings');
-  }
-
-  ngOnInit(): void {
   }
 
 }
