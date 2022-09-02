@@ -1,8 +1,11 @@
 export class Meeting {
-  id?: number;
-  startTime?: string;
-  endTime?: string;
-  date?: string;
-  title?: string;
-  desc?: string;
+
+  constructor(
+    public id?: number,
+    public startTime?: string,
+    public endTime?: string,
+    public date?: string,
+    public title?: string,
+    public desc?: string,
+  ){ }
 }
