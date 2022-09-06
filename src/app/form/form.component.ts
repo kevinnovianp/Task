@@ -51,6 +51,22 @@ export class FormComponent implements OnInit {
   // }
 
   submitForm(){
+    if(!this.title){
+      alert("Judul meeting harus diisi!")
+      return
+    }
+    if(!this.date){
+      alert("Tanggal meeting harus diisi!")
+      return
+    }
+    if(!this.startTime || !this.endTime){
+      alert("Rentan waktu meeting harus diisi!")
+      return
+    }
+    if(!this.desc){
+      alert("Deskripsi meeting harus diisi!")
+      return
+    }
     this.meetService.setCurrId(1)
     const newMeeting: Meeting = {
       id: this.meetService.getCurrId(),
