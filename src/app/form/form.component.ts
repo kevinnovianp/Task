@@ -41,21 +41,21 @@ export class FormComponent implements OnInit {
     return nd
   }
 
-  public changeTimeFormat(time:any){
-    var hour = Number(time.substring(0,2))
-    var local = hour<12 ? "AM" : "PM"
-    hour = hour>12 ? hour-12 : hour
-    var minute = Number(time.substring(3,5))
-    var nt = String(hour).padStart(2, '0') + ":" + String(minute).padStart(2, '0') + " " + local
-    return nt
-  }
+  // public changeTimeFormat(time:any){
+  //   var hour = Number(time.substring(0,2))
+  //   var local = hour<12 ? "AM" : "PM"
+  //   hour = hour>12 ? hour-12 : hour
+  //   var minute = Number(time.substring(3,5))
+  //   var nt = String(hour).padStart(2, '0') + ":" + String(minute).padStart(2, '0') + " " + local
+  //   return nt
+  // }
 
   submitForm(){
     this.meetService.setCurrId(1)
     const newMeeting: Meeting = {
       id: this.meetService.getCurrId(),
-      startTime: this.changeDateFormat(this.startTime),
-      endTime: this.changeDateFormat(this.endTime),
+      startTime: this.startTime,
+      endTime: this.endTime,
       date: this.changeDateFormat(this.date),
       title: this.title,
       desc: this.desc,
