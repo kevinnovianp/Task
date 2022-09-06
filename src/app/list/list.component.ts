@@ -25,4 +25,12 @@ export class ListComponent implements OnInit {
     );
   }
 
+  deleteMeeting(id: any){
+    var indexOfObject = this.meetings.findIndex((object) => {
+      return object.id == id;
+    })
+    this.meetings.splice(indexOfObject, 1);
+    alert("Meeting berhasil dihapus!")
+  }
+
 }
