@@ -21,19 +21,18 @@ export class FormComponent implements OnInit {
   public date!: string
   public title!: string
   public desc!: string
-  public newMeetings!: Meeting[]
+  meetings!: Meeting[]
 
   constructor(private meetService: MeetingService) { }
 
   ngOnInit(): void {
-    this.meetService.getMeetings().subscribe(
-      (meetings: any) => {
-        this.newMeetings = meetings
+    this.meetService.getAllMeetings().subscribe(
+      (meetings) => {
+        this.meetings = meetings
       }
     );
   }
 
-  currId=1
   month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
   public changeDateFormat(date:any){
@@ -52,18 +51,19 @@ export class FormComponent implements OnInit {
   }
 
   submitForm(){
-    this.id = this.currId++
+    this.meetService.setCurrId(1)
     const newMeeting: Meeting = {
-      id: this.id,
+      id: this.meetService.getCurrId(),
       startTime: this.changeDateFormat(this.startTime),
       endTime: this.changeDateFormat(this.endTime),
       date: this.changeDateFormat(this.date),
       title: this.title,
       desc: this.desc,
     }
-    this.newMeetings.push(newMeeting)
-    alert(this.id + "; " + this.title + "; " + this.changeDateFormat(this.date) + "; "+ this.changeTimeFormat(this.startTime) + " s/d " + this.changeTimeFormat(this.endTime) + "; " + this.desc)
-    location.pathname = ('/view_meetings');
+    this.meetings.push(newMeeting)
+    // this.meetService.pushMeeting(newMeeting)
+    alert("Meeting berhasil ditambahkan!")
+    // location.pathname = ('/view_meetings');
   }
 
 }

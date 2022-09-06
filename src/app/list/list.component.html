@@ -1,11 +1,11 @@
 <div class="container-fluid p-0">
-  <div class="m-4" *ngIf="ctr">
-    <div class="d-flex justify-content-center" *ngFor="let m of meets">
+  <div class="m-4" *ngIf="meetings.length !== 0">
+    <div class="d-flex justify-content-center" *ngFor="let m of meetings">
       <div class="list-group-item card p-4 pt-3 pb-3 mb-4 shadow bg-body rounded-2" style="width: 90vw;">
         <div class="d-flex justify-content-between align-items-center">
           <table style="width: 100%;">
             <tr>
-              <td style="width: 80%;"><b style="font-size: 14pt;">{{m.title}}</b></td>
+              <td style="width: 80%;"><b style="font-size: 14pt;">{{m.id}} - {{m.title}}</b></td>
               <td style="width: 20%;">
                 <div class="container-fluid p-0 m-0 d-flex justify-content-end" style="width: 100%;">
                   <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" [attr.data-target]="'#multiCollapseExample'+ m.id" aria-expanded="false" style="background-color: var(--bca);">
@@ -40,7 +40,7 @@
       </div>
     </div>
   </div>
-  <div class="m-4" *ngIf="!ctr">
+  <div class="m-4" *ngIf="meetings.length === 0">
     <div class="d-flex justify-content-center">
       <div class="card p-4 pt-3 pb-3 shadow bg-body rounded-2 mb-4 text-center" style="width: 90vw;">
         <b>No Meeting Found</b>

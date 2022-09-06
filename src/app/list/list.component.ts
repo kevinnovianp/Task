@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Meeting } from '../meeting';
 import { MEETS } from '../meeting-dump'
+import { MeetingService } from '../meeting.service';
 
 @Component({
   selector: 'app-list',
@@ -10,13 +11,18 @@ import { MEETS } from '../meeting-dump'
 })
 export class ListComponent implements OnInit {
 
-  meets = MEETS;
-  ctr = MEETS.length==0 ? false:true
 
-  constructor() { }
+  constructor(private meetService: MeetingService) { }
+
+  // meets = MEETS;
+  meetings!: Meeting[]
 
   ngOnInit(): void {
-
+    this.meetService.getAllMeetings().subscribe(
+      (meetings: Meeting[]) => {
+        this.meetings = meetings
+      }
+    );
   }
 
 }
