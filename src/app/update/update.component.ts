@@ -16,11 +16,11 @@ export class UpdateComponent implements OnInit {
   meetings!: Meeting[]
 
   public id!: number
-  public startTime!: string
-  public endTime!: string
-  public date!: string
-  public title!: string
-  public desc!: string
+  public startTime!: any | string
+  public endTime!: any | string
+  public date!: any | string
+  public title!: any | string
+  public desc!: any | string
   
   constructor(
     private meetService: MeetingService,
@@ -38,17 +38,15 @@ export class UpdateComponent implements OnInit {
               return object.id == this.currUpdateId
             })
             this.currMeeting = meetings[this.currIdx]
+            this.title = meetings[this.currIdx].title
+            this.date = meetings[this.currIdx].date
+            this.startTime = meetings[this.currIdx].startTime
+            this.endTime = meetings[this.currIdx].endTime
+            this.desc = meetings[this.currIdx].desc
+            
           })
         }
       );
-    }
-
-    month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-
-    public changeDateFormat(date:any){
-      var od = new Date(date)
-      var nd = od.getDate() + " " + this.month[od.getMonth()] + " " + od.getFullYear()
-      return nd
     }
 
     editForm(){
@@ -72,7 +70,7 @@ export class UpdateComponent implements OnInit {
         id: this.currUpdateId,
         startTime: this.startTime,
         endTime: this.endTime,
-        date: this.changeDateFormat(this.date),
+        date: this.date,
         title: this.title,
         desc: this.desc,
       }

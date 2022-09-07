@@ -26,12 +26,12 @@
               </tr>
               <tr>
                 <td style="width: 20%;"><b>Tanggal</b></td>
-                <td style="width: 60%;">{{m.date}}</td>
+                <td style="width: 60%;">{{changeDateFormat(m.date)}}</td>
                 <td style="width: 20%;"></td>
               </tr>
               <tr>
                 <td><b>Jam</b></td>
-                <td>{{m.startTime}} s/d {{m.endTime}}</td>
+                <td>{{changeTimeFormat(m.startTime)}} s/d {{changeTimeFormat(m.endTime)}}</td>
                 <td style="width: 20%;"></td>
               </tr>
               <tr>
@@ -45,7 +45,7 @@
                 Update
               </button>
               <button class="btn btn-danger btn-sm ms-2" type="button" (click)="deleteMeeting(m.id)">
-                Delete
+                Hapus
               </button>
             </div>
           </div>

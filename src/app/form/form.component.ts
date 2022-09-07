@@ -36,23 +36,6 @@ export class FormComponent implements OnInit {
     );
   }
 
-  month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
-
-  public changeDateFormat(date:any){
-    var od = new Date(date)
-    var nd = od.getDate() + " " + this.month[od.getMonth()] + " " + od.getFullYear()
-    return nd
-  }
-
-  // public changeTimeFormat(time:any){
-  //   var hour = Number(time.substring(0,2))
-  //   var local = hour<12 ? "AM" : "PM"
-  //   hour = hour>12 ? hour-12 : hour
-  //   var minute = Number(time.substring(3,5))
-  //   var nt = String(hour).padStart(2, '0') + ":" + String(minute).padStart(2, '0') + " " + local
-  //   return nt
-  // }
-
   submitForm(){
     if(!this.title){
       alert("Judul meeting harus diisi!")
@@ -75,7 +58,7 @@ export class FormComponent implements OnInit {
       id: this.meetService.getCurrId(),
       startTime: this.startTime,
       endTime: this.endTime,
-      date: this.changeDateFormat(this.date),
+      date: this.date,
       title: this.title,
       desc: this.desc,
     }
