@@ -9,6 +9,7 @@ import { MeetingService } from '../meeting.service';
 })
 export class UpdateComponent implements OnInit {
 
+  currUpdateId = this.meetService.getCurrUpdateId()
   meetings!: Meeting[]
   
   constructor(private meetService: MeetingService) { }

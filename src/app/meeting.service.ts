@@ -16,6 +16,8 @@ export class MeetingService {
     // {id:6, startTime:'11:30', endTime:'16:30', date:'13 May 2022', title: 'Meet 6', desc: 'This is sixth meet'}
   ])
   private currId = 3
+  private currUpdateId = -1
+
   constructor() { }
 
   getAllMeetings(): Observable<Meeting[]> {
@@ -32,5 +34,13 @@ export class MeetingService {
 
   setCurrId(num: number){
     this.currId+=num
+  }
+
+  getCurrUpdateId() {
+    return this.currUpdateId
+  }
+
+  setCurrUpdateId(num: number){
+    this.currUpdateId=num
   }
 }

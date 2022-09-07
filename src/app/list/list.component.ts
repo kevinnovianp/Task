@@ -12,7 +12,9 @@ import { MeetingService } from '../meeting.service';
 export class ListComponent implements OnInit {
 
 
-  constructor(private meetService: MeetingService) { }
+  constructor(
+    private meetService: MeetingService,
+  ) { }
 
   // meets = MEETS;
   meetings!: Meeting[]
@@ -31,6 +33,10 @@ export class ListComponent implements OnInit {
     })
     this.meetings.splice(indexOfObject, 1);
     alert("Meeting berhasil dihapus!")
+  }
+
+  setUpdateId(id: any){
+    this.meetService.setCurrUpdateId(id)
   }
 
 }

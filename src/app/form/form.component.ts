@@ -23,7 +23,10 @@ export class FormComponent implements OnInit {
   public desc!: string
   meetings!: Meeting[]
 
-  constructor(private meetService: MeetingService) { }
+  constructor(
+    private meetService: MeetingService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.meetService.getAllMeetings().subscribe(
@@ -79,7 +82,8 @@ export class FormComponent implements OnInit {
     this.meetings.push(newMeeting)
     // this.meetService.pushMeeting(newMeeting)
     alert("Meeting berhasil ditambahkan!")
-    // location.pathname = ('/view_meetings');
+    // location.pathname = ('/view_meetings')
+    this.router.navigate(['/view_meetings'])
   }
 
 }
