@@ -11,8 +11,9 @@ import { MeetingService } from '../meeting.service';
 })
 export class ListComponent implements OnInit {
 
-
-  constructor(private meetService: MeetingService) { }
+  constructor(
+    private meetService: MeetingService,
+  ) { }
 
   // meets = MEETS;
   meetings!: Meeting[]

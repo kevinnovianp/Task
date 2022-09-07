@@ -16,6 +16,7 @@ export class MeetingService {
     // {id:6, startTime:'11:30', endTime:'16:30', date:'13 May 2022', title: 'Meet 6', desc: 'This is sixth meet'}
   ])
   private currId = 3
+
   constructor() { }
 
   getAllMeetings(): Observable<Meeting[]> {
