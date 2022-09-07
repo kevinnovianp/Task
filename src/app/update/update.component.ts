@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Meeting } from '../meeting';
 import { MeetingService } from '../meeting.service';
 
@@ -9,17 +10,25 @@ import { MeetingService } from '../meeting.service';
 })
 export class UpdateComponent implements OnInit {
 
-  currUpdateId = this.meetService.getCurrUpdateId()
+  // currUpdateId = this.meetService.getCurrUpdateId()
+  currUpdateId!: number
   meetings!: Meeting[]
   
-  constructor(private meetService: MeetingService) { }
-
-  ngOnInit(): void {
-    this.meetService.getAllMeetings().subscribe(
-      (meetings: Meeting[]) => {
-        this.meetings = meetings
-      }
-    );
-  }
-
+  
+  constructor(
+    private meetService: MeetingService,
+    private activatedRoute: ActivatedRoute
+    ) { }
+    
+    ngOnInit(): void {
+      this.meetService.getAllMeetings().subscribe(
+        (meetings: Meeting[]) => {
+          this.meetings = meetings,
+          this.activatedRoute.paramMap.subscribe(params => {
+            this.currUpdateId = parseInt(params.get('id')!)
+          })
+        }
+      );
+    }
+      
 }

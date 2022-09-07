@@ -20,6 +20,11 @@
           <div class="card card-body mt-2">
             <table style="width: 100%;">
               <tr>
+                <td><b>Id</b></td>
+                <td style="line-height: 1rem;">{{m.id}}</td>
+                <td style="width: 20%;"></td>
+              </tr>
+              <tr>
                 <td style="width: 20%;"><b>Tanggal</b></td>
                 <td style="width: 60%;">{{m.date}}</td>
                 <td style="width: 20%;"></td>
@@ -36,7 +41,7 @@
               </tr>
             </table>
             <div class="container-fluid d-flex justify-content-end" style="width: 100%;">
-              <button class="btn btn-success btn-sm ms-2" type="button" (click)="setUpdateId(m.id)" routerLink="/view_meetings/update_meeting/{{m.id}}">
+              <button class="btn btn-success btn-sm ms-2" type="button" routerLink="/view_meetings/update_meeting/{{m.id}}">
                 Update
               </button>
               <button class="btn btn-danger btn-sm ms-2" type="button" (click)="deleteMeeting(m.id)">
