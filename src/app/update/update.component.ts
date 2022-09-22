@@ -21,13 +21,13 @@ export class UpdateComponent implements OnInit {
   public date!: any | string
   public title!: any | string
   public desc!: any | string
-  
+
   constructor(
     private meetService: MeetingService,
     private activatedRoute: ActivatedRoute,
     private router: Router
     ) { }
-    
+
     ngOnInit(): void {
       this.meetService.getAllMeetings().subscribe(
         (meetings: Meeting[]) => {
@@ -43,7 +43,7 @@ export class UpdateComponent implements OnInit {
             this.startTime = meetings[this.currIdx].startTime
             this.endTime = meetings[this.currIdx].endTime
             this.desc = meetings[this.currIdx].desc
-            
+
           })
         }
       );
@@ -74,9 +74,11 @@ export class UpdateComponent implements OnInit {
         title: this.title,
         desc: this.desc,
       }
-      this.meetings[this.currIdx] = newMeeting
+      // this.meetings[this.currIdx] = newMeeting
+      this.meetService.updateMeeting(newMeeting, this.currIdx).subscribe();
       alert("Meeting berhasil diedit!")
-      this.router.navigate(['/view_meetings'])
+      // this.router.navigate(['/view_meetings'])
+      location.pathname = ('/view_meetings')
     }
-    
+
 }

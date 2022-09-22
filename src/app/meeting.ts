@@ -1,7 +1,7 @@
 export class Meeting {
 
   constructor(
-    public id?: number,
+    public id: number,
     public startTime?: string,
     public endTime?: string,
     public date?: string,

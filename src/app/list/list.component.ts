@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Meeting } from '../meeting';
-import { MEETS } from '../meeting-dump'
 import { MeetingService } from '../meeting.service';
 
 @Component({
@@ -21,7 +19,8 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.meetService.getAllMeetings().subscribe(
       (meetings: Meeting[]) => {
-        this.meetings = meetings
+        this.meetings = meetings;
+        this.meetings.sort((a, b) => (a.id < b.id) ? -1 : 1);
       }
     );
   }
@@ -30,8 +29,10 @@ export class ListComponent implements OnInit {
     var indexOfObject = this.meetings.findIndex((object) => {
       return object.id == id;
     })
-    this.meetings.splice(indexOfObject, 1);
+    // this.meetings.splice(indexOfObject, 1);
+    this.meetService.deleteMeeting(id).subscribe();
     alert("Meeting berhasil dihapus!")
+    location.pathname = ('/view_meetings')
   }
 
   month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]

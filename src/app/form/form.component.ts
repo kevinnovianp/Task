@@ -1,10 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MeetingService } from '../meeting.service';
-import { NgModule } from '@angular/core';
-import { FormsModule, FormControl, FormGroup } from '@angular/forms';
 import { Meeting } from '../meeting';
-import { NgForm } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
@@ -53,20 +49,26 @@ export class FormComponent implements OnInit {
       alert("Deskripsi meeting harus diisi!")
       return
     }
-    this.meetService.setCurrId(1)
+
+    // this.meetService.setCurrId(1)
     const newMeeting: Meeting = {
-      id: this.meetService.getCurrId(),
+      id: 0,
       startTime: this.startTime,
       endTime: this.endTime,
       date: this.date,
       title: this.title,
       desc: this.desc,
     }
-    this.meetings.push(newMeeting)
-    // this.meetService.pushMeeting(newMeeting)
+    // this.meetService.addMeeting(newMeeting);
+    this.meetService.addMeeting(newMeeting).subscribe(
+      (meetings) => {
+        this.meetings = meetings
+      }
+    )
+    // this.meetings.push(newMeeting)
     alert("Meeting berhasil ditambahkan!")
-    // location.pathname = ('/view_meetings')
-    this.router.navigate(['/view_meetings'])
+    location.pathname = ('/view_meetings')
+    // this.router.navigate(['/view_meetings'])
   }
 
 }
