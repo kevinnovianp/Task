@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Meeting } from '../meeting';
 import { MeetingService } from '../meeting.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list',
@@ -31,8 +32,17 @@ export class ListComponent implements OnInit {
     })
     // this.meetings.splice(indexOfObject, 1);
     this.meetService.deleteMeeting(id).subscribe();
-    alert("Meeting berhasil dihapus!")
-    location.pathname = ('/view_meetings')
+    Swal.fire({
+      title: 'Success',
+      text: 'Meeting berhasil dihapus!',
+      icon: 'success'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        location.pathname = ('/view_meetings')
+      }
+    })
+    // alert("Meeting berhasil dihapus!")
+    // location.pathname = ('/view_meetings')
   }
 
   month=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]

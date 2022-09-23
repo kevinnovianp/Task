@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meeting } from '../meeting';
 import { MeetingService } from '../meeting.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-update',
@@ -51,21 +52,42 @@ export class UpdateComponent implements OnInit {
 
     editForm(){
       if(!this.title){
-        alert("Judul meeting harus diisi!")
+        Swal.fire({
+          title: 'Error',
+          text: 'Judul meeting harus diisi!',
+          icon: 'error'
+        })
+        // alert("Judul meeting harus diisi!")
         return
       }
       if(!this.date){
-        alert("Tanggal meeting harus diisi!")
+        Swal.fire({
+          title: 'Error',
+          text: 'Tanggal meeting harus diisi!',
+          icon: 'error'
+        })
+        // alert("Tanggal meeting harus diisi!")
         return
       }
       if(!this.startTime || !this.endTime){
-        alert("Rentan waktu meeting harus diisi!")
+        Swal.fire({
+          title: 'Error',
+          text: 'Rentan meeting harus diisi!',
+          icon: 'error'
+        })
+        // alert("Rentan waktu meeting harus diisi!")
         return
       }
       if(!this.desc){
-        alert("Deskripsi meeting harus diisi!")
+        Swal.fire({
+          title: 'Error',
+          text: 'Deskripsi meeting harus diisi!',
+          icon: 'error'
+        })
+        // alert("Deskripsi meeting harus diisi!")
         return
       }
+
       const newMeeting: Meeting = {
         id: this.currUpdateId,
         startTime: this.startTime,
@@ -76,9 +98,18 @@ export class UpdateComponent implements OnInit {
       }
       // this.meetings[this.currIdx] = newMeeting
       this.meetService.updateMeeting(newMeeting, this.currIdx).subscribe();
-      alert("Meeting berhasil diedit!")
+      Swal.fire({
+        title: 'Success',
+        text: 'Meeting berhasil diedit!',
+        icon: 'success'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          location.pathname = ('/view_meetings')
+        }
+      })
+      // alert("Meeting berhasil diedit!")
       // this.router.navigate(['/view_meetings'])
-      location.pathname = ('/view_meetings')
+      // location.pathname = ('/view_meetings')
     }
 
 }

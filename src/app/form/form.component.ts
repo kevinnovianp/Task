@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MeetingService } from '../meeting.service';
 import { Meeting } from '../meeting';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -34,19 +35,39 @@ export class FormComponent implements OnInit {
 
   submitForm(){
     if(!this.title){
-      alert("Judul meeting harus diisi!")
+      Swal.fire({
+        title: 'Error',
+        text: 'Judul meeting harus diisi!',
+        icon: 'error'
+      })
+      // alert("Judul meeting harus diisi!")
       return
     }
     if(!this.date){
-      alert("Tanggal meeting harus diisi!")
+      Swal.fire({
+        title: 'Error',
+        text: 'Tanggal meeting harus diisi!',
+        icon: 'error'
+      })
+      // alert("Tanggal meeting harus diisi!")
       return
     }
     if(!this.startTime || !this.endTime){
-      alert("Rentan waktu meeting harus diisi!")
+      Swal.fire({
+        title: 'Error',
+        text: 'Rentan meeting harus diisi!',
+        icon: 'error'
+      })
+      // alert("Rentan waktu meeting harus diisi!")
       return
     }
     if(!this.desc){
-      alert("Deskripsi meeting harus diisi!")
+      Swal.fire({
+        title: 'Error',
+        text: 'Deskripsi meeting harus diisi!',
+        icon: 'error'
+      })
+      // alert("Deskripsi meeting harus diisi!")
       return
     }
 
@@ -66,8 +87,16 @@ export class FormComponent implements OnInit {
       }
     )
     // this.meetings.push(newMeeting)
-    alert("Meeting berhasil ditambahkan!")
-    location.pathname = ('/view_meetings')
+    Swal.fire({
+      title: 'Success',
+      text: 'Meeting berhasil ditambahkan!',
+      icon: 'success'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        location.pathname = ('/view_meetings')
+      }
+    })
+    // alert("Meeting berhasil ditambahkan!")
     // this.router.navigate(['/view_meetings'])
   }
 
