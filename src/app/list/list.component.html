@@ -1,4 +1,28 @@
 <div class="container-fluid p-0">
+  <div class="container-fluid p-2 px-4 d-flex justify-content-end align-items-center" style="width: 100%;">
+    <div class="d-flex justify-content-end align-items-center">
+      <form class="mt-0 me-3">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text">
+            <img src="/assets/lens.png" alt="" style="height:1rem; width:1rem">
+          </span>
+          <input type="search" #key="ngModel" (ngModelChange)="searchEmployees(key.value)" ngModel style="text-overflow: ellipsis; width: 20vw"
+           name="key" id="searchName" class="form-control input-group mr-sm-2 p-1 px-2" placeholder="Input meeting's id or title" required>
+        </div>
+      </form>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: var(--bca);">
+          Sort By
+        </button>
+        <ul class="dropdown-menu" style="font-size: 10pt;">
+          <li><a class="dropdown-item" [ngClass]="{'active': selectedSort === 'newest'}" (click)="sortMeeting('newest')" style="cursor: pointer;">Newest</a></li>
+          <li><a class="dropdown-item" [ngClass]="{'active': selectedSort === 'oldest'}" (click)="sortMeeting('oldest')" style="cursor: pointer;">Oldest</a></li>
+          <li><a class="dropdown-item" [ngClass]="{'active': selectedSort === 'title'}" (click)="sortMeeting('title')" style="cursor: pointer;">Title</a></li>
+          <li><a class="dropdown-item" [ngClass]="{'active': selectedSort === 'date'}" (click)="sortMeeting('date')" style="cursor: pointer;">Date</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="m-4" *ngIf="meetings.length !== 0">
     <div class="d-flex justify-content-center" *ngFor="let m of meetings">
       <div class="list-group-item card p-4 pt-3 pb-3 mb-4 shadow bg-body rounded-2" style="width: 90vw;">

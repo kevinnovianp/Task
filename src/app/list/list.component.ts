@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
 
   // meets = MEETS;
   meetings!: Meeting[]
+  selectedSort = "newest"
 
   ngOnInit(): void {
     this.meetService.getAllMeetings().subscribe(
@@ -62,4 +63,41 @@ export class ListComponent implements OnInit {
       return nt
     }
 
+    public searchEmployees(key: string): void {
+      // console.log(key);
+      const results: Meeting[] = [];
+      for (const m of this.meetings) {
+        if (m.id.toString().toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || m.title?.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+          results.push(m);
+        }
+      }
+      this.meetings = results;
+      if (!key) {
+        this.ngOnInit();
+      }
+    }
+
+    public sortMeeting(key: string):void {
+      const allMeetings: Meeting[] = this.meetings;
+      this.selectedSort = key
+      switch(key){
+        case "newest":{
+          this.meetings.sort((a, b) => (a.id > b.id) ? -1 : 1);
+          break;
+        }
+        case "oldest":{
+          this.meetings.sort((a, b) => (a.id < b.id) ? -1 : 1);
+          break;
+        }
+        case "title":{
+          this.meetings.sort((a, b) => (a.title < b.title) ? -1 : 1);
+          break;
+        }
+        case "date":{
+          this.meetings.sort((a, b) => (a.date < b.date) ? -1 : 1);
+          break;
+        }
+      }
+    }
 }
