@@ -25,9 +25,7 @@ export class UpdateComponent implements OnInit {
 
   constructor(
     private meetService: MeetingService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-    ) { }
+    private activatedRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
       this.meetService.getAllMeetings().subscribe(
@@ -97,7 +95,7 @@ export class UpdateComponent implements OnInit {
         desc: this.desc,
       }
       // this.meetings[this.currIdx] = newMeeting
-      this.meetService.updateMeeting(newMeeting, this.currIdx).subscribe();
+      this.meetService.updateMeeting(newMeeting, this.currUpdateId).subscribe();
       Swal.fire({
         title: 'Success',
         text: 'Meeting berhasil diedit!',

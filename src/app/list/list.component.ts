@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
 
   // meets = MEETS;
   meetings!: Meeting[]
-  selectedSort = "newest"
+  selectedSort = "oldest"
 
   ngOnInit(): void {
     this.meetService.getAllMeetings().subscribe(

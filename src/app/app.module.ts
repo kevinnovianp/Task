@@ -7,13 +7,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateComponent } from './update/update.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     routingComponents,
-    UpdateComponent
+    UpdateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
