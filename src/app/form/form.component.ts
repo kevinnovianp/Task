@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MeetingService } from '../meeting.service';
 import { Meeting } from '../meeting';
-import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,7 +21,6 @@ export class FormComponent implements OnInit {
 
   constructor(
     private meetService: MeetingService,
-    private router: Router
   ) { }
 
   ngOnInit(): void {
