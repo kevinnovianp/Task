@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,30 +9,25 @@ import { UserService } from '../user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public currIdLogin!: number
+  // public currIdLogin!: number
+  public isLoggedIn: boolean
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private authService : AuthService
   ) { }
 
   ngOnInit(): void {
-    this.userService.getIdCurrUser().subscribe(
-      (currIdLogin: number) => {
-        this.currIdLogin = currIdLogin
-      }
-    );
+    // this.userService.getIdCurrUser().subscribe(
+    //   (currIdLogin: number) => {
+    //     this.currIdLogin = currIdLogin
+    //   }
+    // );
+    this.isLoggedIn =  this.authService.isLoggedIn();
   }
 
   logout(): void{
-    Swal.fire({
-      title: 'Success',
-      text: 'Logout Berhasil!',
-      icon: 'success'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.userService.setIdCurrUser(0).subscribe();
-        location.pathname = ('/login')
-      }
-    })
+    this.authService.logout();
+    this.userService.setIdCurrUser(0).subscribe();
   }
 }

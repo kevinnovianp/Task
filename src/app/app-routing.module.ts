@@ -6,14 +6,16 @@ import { ListComponent } from './list/list.component';
 import { UpdateComponent } from './update/update.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './guards/auth.guard';
+import { HomeGuard } from './guards/home.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
-  {path: 'new_meeting', component: FormComponent},
-  {path: 'view_meetings', component: ListComponent},
-  {path: 'view_meetings/update_meeting/:id', component: UpdateComponent}
+  {path: 'new_meeting', component: FormComponent, canActivate: [HomeGuard]},
+  {path: 'view_meetings', component: ListComponent, canActivate: [HomeGuard]},
+  {path: 'view_meetings/update_meeting/:id', component: UpdateComponent, canActivate: [HomeGuard]}
 ];
 
 @NgModule({

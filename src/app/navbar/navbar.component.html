@@ -8,7 +8,7 @@
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav" *ngIf="currIdLogin !== 0">
+          <ul class="navbar-nav" *ngIf="isLoggedIn === true">
               <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/new_meeting']" [routerLinkActive]="['active']">New Meeting</a>
               </li>

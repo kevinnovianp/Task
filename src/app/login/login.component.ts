@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../auth.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -10,7 +12,6 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
-  public id!: number
   public username!: string
   public password!: string
   users!: User[]
@@ -18,6 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +31,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  public login():void{
+  public login(): void{
     if(!this.username){
       Swal.fire({
         title: 'Error',
@@ -56,15 +59,33 @@ export class LoginComponent implements OnInit {
     //   return
     // }
 
-    Swal.fire({
-      title: 'Success',
-      text: 'Login Berhasil!',
-      icon: 'success'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.userService.setIdCurrUser(1).subscribe();
-        location.pathname = ('/view_meetings')
+    const credentials: User = {
+      id: 0,
+      username: this.username,
+      password: this.password
+    }
+
+    this.authService.login(credentials).subscribe((token)=>{
+      if(token){
+        Swal.fire({
+          title: 'Success',
+          text: 'Login Berhasil!',
+          icon: 'success'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.userService.setIdCurrUser(1).subscribe();
+            location.pathname = ('/view_meetings')
+          }
+        })
       }
-    })
+      else{
+        Swal.fire({
+          title: 'Error',
+          text: 'Invalid Credential!',
+          icon: 'error'
+        })
+      }
+    });
+
   }
 }
