@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Meeting } from '../meeting';
 import { MeetingService } from '../meeting.service';
 import Swal from 'sweetalert2';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-list',
@@ -12,16 +13,23 @@ export class ListComponent implements OnInit {
 
   constructor(
     private meetService: MeetingService,
+    private userService: UserService
   ) { }
 
   // meets = MEETS;
   meetings!: Meeting[]
   selectedSort = "oldest"
+  creatorId: number
 
   ngOnInit(): void {
+    this.userService.getCreatorId().subscribe(
+      (creatorId: number) => {
+        this.creatorId = creatorId;
+      }
+    );
     this.meetService.getAllMeetings().subscribe(
       (meetings: Meeting[]) => {
-        this.meetings = meetings;
+        this.meetings = meetings.filter((m) => {return m.creator === this.creatorId;});
         this.meetings.sort((a, b) => (a.id < b.id) ? -1 : 1);
       }
     );

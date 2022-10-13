@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MeetingService } from '../meeting.service';
 import { Meeting } from '../meeting';
 import Swal from 'sweetalert2';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-form',
@@ -17,13 +18,20 @@ export class FormComponent implements OnInit {
   public date!: string
   public title!: string
   public desc!: string
+  public creatorId!: number
   meetings!: Meeting[]
 
   constructor(
     private meetService: MeetingService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
+    this.userService.getCreatorId().subscribe(
+      (creatorId: number) => {
+        this.creatorId = creatorId;
+      }
+    );
     this.meetService.getAllMeetings().subscribe(
       (meetings) => {
         this.meetings = meetings
@@ -77,6 +85,7 @@ export class FormComponent implements OnInit {
       date: this.date,
       title: this.title,
       desc: this.desc,
+      creator: this.creatorId
     }
     // this.meetService.addMeeting(newMeeting);
     this.meetService.addMeeting(newMeeting).subscribe(

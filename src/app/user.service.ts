@@ -20,11 +20,7 @@ export class UserService {
     return this.http.post<User[]>(`${this.apiServerUrl}/user/add`, newUser);
   }
 
-  public setIdCurrUser(id: number): any {
-    return this.http.get(`${this.apiServerUrl}/user/setIdLogin/${id}`);
-  }
-
-  public getIdCurrUser(): any {
-    return this.http.get(`${this.apiServerUrl}/user/getIdLogin`);
+  public getCreatorId() : Observable<number> {
+    return this.http.get<number>(`${this.apiServerUrl}/user/getCreatorId`);
   }
 }

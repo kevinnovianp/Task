@@ -7,5 +7,6 @@ export class Meeting {
     public date?: string,
     public title?: string,
     public desc?: string,
+    public creator?: number
   ){ }
 }

@@ -18,17 +18,11 @@ export class LoginComponent implements OnInit {
   public currIdLogin!: number
 
   constructor(
-    private userService: UserService,
     private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.userService.getIdCurrUser().subscribe(
-      (currIdLogin: number) => {
-        this.currIdLogin = currIdLogin
-      }
-    );
   }
 
   public login(): void{
@@ -73,7 +67,6 @@ export class LoginComponent implements OnInit {
           icon: 'success'
         }).then((result) => {
           if (result.isConfirmed) {
-            this.userService.setIdCurrUser(1).subscribe();
             location.pathname = ('/view_meetings')
           }
         })

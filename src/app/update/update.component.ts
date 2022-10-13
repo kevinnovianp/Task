@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Meeting } from '../meeting';
 import { MeetingService } from '../meeting.service';
 import Swal from 'sweetalert2'
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-update',
@@ -22,12 +23,20 @@ export class UpdateComponent implements OnInit {
   public date!: any | string
   public title!: any | string
   public desc!: any | string
+  public creatorId: number
 
   constructor(
+    private userService: UserService,
     private meetService: MeetingService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute
+    ) { }
 
     ngOnInit(): void {
+      this.userService.getCreatorId().subscribe(
+        (creatorId: number) => {
+          this.creatorId = creatorId;
+        }
+      );
       this.meetService.getAllMeetings().subscribe(
         (meetings: Meeting[]) => {
           this.meetings = meetings,
@@ -42,7 +51,7 @@ export class UpdateComponent implements OnInit {
             this.startTime = meetings[this.currIdx].startTime
             this.endTime = meetings[this.currIdx].endTime
             this.desc = meetings[this.currIdx].desc
-
+            this.creatorId = meetings[this.currIdx].creator
           })
         }
       );
@@ -93,6 +102,7 @@ export class UpdateComponent implements OnInit {
         date: this.date,
         title: this.title,
         desc: this.desc,
+        creator: this.creatorId
       }
       // this.meetings[this.currIdx] = newMeeting
       this.meetService.updateMeeting(newMeeting, this.currUpdateId).subscribe();
