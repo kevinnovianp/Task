@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
     if(!this.confirmPassword){
       Swal.fire({
         title: 'Error',
-        text: 'Password harus diisi!',
+        text: 'Konfirmasi Password harus diisi!',
         icon: 'error'
       })
       return
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
     if(this.password !== this.confirmPassword){
       Swal.fire({
         title: 'Error',
-        text: 'Konfirmasi password dan Password harus sama!',
+        text: 'Password dan Konfirmasi password harus sama!',
         icon: 'error'
       })
       return
